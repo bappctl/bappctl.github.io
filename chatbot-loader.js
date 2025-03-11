@@ -5,26 +5,32 @@
         return;
       }
   
-      const container = document.createElement("div");
-      container.id = "chatbot-widget-container";
-      document.body.appendChild(container);
-  
-      const ChatbotWidget = window.ChatbotWidget.default;
-      if (!ChatbotWidget) {
+      // Wait for ChatbotWidget to load
+      if (!window.ChatbotWidget) {
         console.error("ChatbotWidget is not loaded.");
         return;
       }
   
+      const container = document.createElement("div");
+      container.id = "chatbot-widget-container";
+      document.body.appendChild(container);
+  
       ReactDOM.render(
-        React.createElement(ChatbotWidget, options),
+        React.createElement(window.ChatbotWidget.default, options),
         container
       );
     }
   
     window.initChatbotWidget = function (options) {
       const script = document.createElement("script");
-      script.src = "https://bappctl.github.io/chatbot-widget.umd.js"; // Replace with actual CDN URL
-      script.onload = () => loadWidget(options);
+      script.src = "https://bappctl.github.io/chatbot-widget.umd.js"; //Ensure this path is correct
+      script.onload = () => {
+        if (window.ChatbotWidget) {
+          loadWidget(options);
+        } else {
+          console.error("ChatbotWidget failed to load.");
+        }
+      };
       document.head.appendChild(script);
     };
   })();
