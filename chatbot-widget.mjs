@@ -14236,7 +14236,7 @@ const Su = /* @__PURE__ */ new Set(["children", "localName", "ref", "style", "cl
     onactivate: "activate",
     onchange: "change"
   }
-}), Cu = ({ apiUrl: r, title: i = "SalesAI Navigator Chatbot" }) => /* @__PURE__ */ vn.jsxs("div", { className: "chatbot-container", children: [
+}), wu = ({ apiUrl: r, title: i = "Chatbot" }) => /* @__PURE__ */ vn.jsxs("div", { className: "chatbot-container", children: [
   /* @__PURE__ */ vn.jsx("div", { className: "chatbot-header", children: i }),
   /* @__PURE__ */ vn.jsx(
     Eu,
@@ -14246,6 +14246,7 @@ const Su = /* @__PURE__ */ new Set(["children", "localName", "ref", "style", "cl
     }
   )
 ] });
+typeof window < "u" && (window.ChatbotWidget = wu);
 export {
-  Cu as default
+  wu as default
 };

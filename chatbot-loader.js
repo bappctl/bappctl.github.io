@@ -5,9 +5,9 @@
         return;
       }
   
-      // Wait for ChatbotWidget to load
       if (!window.ChatbotWidget) {
-        console.error("ChatbotWidget is not loaded.");
+        console.error("ChatbotWidget is not loaded. Retrying in 1 second...");
+        setTimeout(() => loadWidget(options), 1000); // Retry loading
         return;
       }
   
@@ -23,7 +23,7 @@
   
     window.initChatbotWidget = function (options) {
       const script = document.createElement("script");
-      script.src = "https://bappctl.github.io/chatbot-widget.umd.js"; //Ensure this path is correct
+      script.src = "https://bappctl.github.io/chatbot-widget.umd.js"; // Ensure this path is correct
       script.onload = () => {
         if (window.ChatbotWidget) {
           loadWidget(options);
